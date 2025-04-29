@@ -47,12 +47,21 @@ const queryCategoryById = asyncHandler(async (id) => {
   return rows[0];
 });
 
+const deleteCategory = asyncHandler(async (id) => {
+  const { rows } = await pool.query(
+    'DELETE FROM categories WHERE id = $1 RETURNING *',
+    [id]
+  );
+  return rows[0];
+});
+
 module.exports = {
   queryAllItems,
   queryItemById,
   addItem,
   queryItemsByCategoryId,
   queryAllCategories,
-  addCategory,
   queryCategoryById,
+  addCategory,
+  deleteCategory,
 };
