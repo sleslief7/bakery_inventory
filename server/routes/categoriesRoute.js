@@ -9,4 +9,4 @@ const categoriesRouter = Router();
 categoriesRouter.get('/', getAllCategories);
 categoriesRouter.post('/', createCategory);
 
-exports.module = categoriesRouter;
+module.exports = categoriesRouter;

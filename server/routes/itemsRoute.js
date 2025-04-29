@@ -13,4 +13,4 @@ itemsRouter.post('/', createItem);
 itemsRouter.get('/:id', getItemById);
 itemsRouter.get('/categories/:categoryId', getItemsByCategoryId);
 
-exports.module = itemsRouter;
+module.exports = itemsRouter;

@@ -13,8 +13,8 @@ const queryItemById = asyncHandler(async (id) => {
 
 const addItem = asyncHandler(async (item) => {
   const { rows } = await pool.query(
-    'INSERT INTO items (name, flavor, category_id) VALUES ($1, $2, $3,) RETURNING *',
-    [item.name, item.flavor, item.category_id]
+    'INSERT INTO items (name, flavor, category_id, img_url) VALUES ($1, $2, $3, $4) RETURNING *',
+    [item.name, item.flavor, item.category_id, item.img_url]
   );
   return rows[0];
 });
@@ -35,7 +35,7 @@ const queryAllCategories = asyncHandler(async () => {
 const addCategory = asyncHandler(async (category) => {
   const { rows } = await pool.query(
     'INSERT INTO categories (name) VALUES ($1) RETURNING *',
-    [category.name]
+    [category]
   );
   return rows[0];
 });
@@ -47,7 +47,7 @@ const queryCategoryById = asyncHandler(async (id) => {
   return rows[0];
 });
 
-exports.module = {
+module.exports = {
   queryAllItems,
   queryItemById,
   addItem,
