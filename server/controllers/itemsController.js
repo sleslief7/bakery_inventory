@@ -10,7 +10,7 @@ const {
 
 const getAllItems = asyncHandler(async (req, res) => {
   const items = await queryAllItems();
-  res.status(200).json({ status: 'success', data: items });
+  res.status(200).json(items);
 });
 
 const getItemById = asyncHandler(async (req, res) => {
@@ -19,7 +19,7 @@ const getItemById = asyncHandler(async (req, res) => {
   if (!item) {
     return res.status(404).json({ status: 'fail', message: 'Item not found' });
   }
-  res.status(200).json({ status: 'success', data: item });
+  res.status(200).json(item);
 });
 
 const createItem = asyncHandler(async (req, res) => {
@@ -32,7 +32,7 @@ const createItem = asyncHandler(async (req, res) => {
   }
 
   const newItem = await addItem({ name, flavor, category_id, img_url });
-  res.status(201).json({ status: 'success', data: newItem });
+  res.status(201).json(newItem);
 });
 
 const getItemsByCategoryId = asyncHandler(async (req, res) => {
@@ -44,7 +44,7 @@ const getItemsByCategoryId = asyncHandler(async (req, res) => {
       .json({ status: 'fail', message: 'Category not found' });
   }
   const items = await queryItemsByCategoryId(categoryId);
-  res.status(200).json({ status: 'success', data: items });
+  res.status(200).json(items);
 });
 
 const deleteItemById = asyncHandler(async (req, res) => {
@@ -53,7 +53,7 @@ const deleteItemById = asyncHandler(async (req, res) => {
   if (!item) {
     return res.status(404).json({ status: 'fail', message: 'Item not found' });
   }
-  res.status(200).json({ status: 'success', data: item });
+  res.status(200).json(item);
 });
 
 module.exports = {

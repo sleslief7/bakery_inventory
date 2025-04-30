@@ -8,7 +8,7 @@ const {
 
 const getAllCategories = asyncHandler(async (req, res) => {
   const categories = await queryAllCategories();
-  res.status(200).json({ status: 'success', data: categories });
+  res.status(200).json(categories);
 });
 
 const createCategory = asyncHandler(async (req, res) => {
@@ -20,7 +20,7 @@ const createCategory = asyncHandler(async (req, res) => {
   }
 
   const newCategory = await addCategory(name);
-  res.status(201).json({ status: 'success', data: newCategory });
+  res.status(201).json(newCategory);
 });
 
 const deleteCategoryById = asyncHandler(async (req, res) => {
@@ -31,8 +31,8 @@ const deleteCategoryById = asyncHandler(async (req, res) => {
       .status(404)
       .json({ status: 'fail', message: 'Category not found' });
   }
-  await deleteCategory(id);
-  res.status(200).json({ status: 'success', message: 'Category deleted' });
+  const deletedCategory = await deleteCategory(id);
+  res.status(200).json(deletedCategory);
 });
 
 const getCategoryById = asyncHandler(async (req, res) => {
@@ -43,7 +43,7 @@ const getCategoryById = asyncHandler(async (req, res) => {
       .status(404)
       .json({ status: 'fail', message: 'Category not found' });
   }
-  res.status(200).json({ status: 'success', data: category });
+  res.status(200).json(category);
 });
 
 module.exports = {
