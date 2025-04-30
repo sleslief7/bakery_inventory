@@ -5,6 +5,7 @@ const {
   addItem,
   queryItemsByCategoryId,
   queryCategoryById,
+  deleteItem,
 } = require('../db/queries.js');
 
 const getAllItems = asyncHandler(async (req, res) => {
@@ -46,9 +47,19 @@ const getItemsByCategoryId = asyncHandler(async (req, res) => {
   res.status(200).json({ status: 'success', data: items });
 });
 
+const deleteItemById = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const item = await deleteItem(id);
+  if (!item) {
+    return res.status(404).json({ status: 'fail', message: 'Item not found' });
+  }
+  res.status(200).json({ status: 'success', data: item });
+});
+
 module.exports = {
   getAllItems,
   getItemById,
   createItem,
   getItemsByCategoryId,
+  deleteItemById,
 };
