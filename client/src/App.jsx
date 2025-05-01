@@ -1,7 +1,15 @@
+import { Outlet } from 'react-router-dom';
+import Header from './components/Header';
+import CategoriesPage from './components/pages/CategoriesPage';
+import './style.css';
+
 function App() {
   return (
     <>
-      <h1>Hello from react!</h1>
+      <Header />
+      <div id="outlet">
+        <Outlet />
+      </div>
     </>
   );
 }
