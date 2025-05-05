@@ -3,12 +3,15 @@ import ItemCard from '../ItemCard';
 
 const ItemsPage = () => {
   const items = useLoaderData();
+
   return (
-    <div id="items-page">
-      {items.map((item) => (
-        <ItemCard item={item} key={`item-${item.id}`} />
-      ))}
-    </div>
+    <>
+      <div id="items-page">
+        {items.map((item) => (
+          <ItemCard item={item} key={`item-${item.id}`} />
+        ))}
+      </div>
+    </>
   );
 };
 

@@ -8,6 +8,8 @@ import {
   itemsByCategoryLoader,
   itemByIdLoader,
 } from './loaders/itemsLoader.jsx';
+import CategoriesForm from './components/CategoriesForm.jsx';
+import Form from './components/Form.jsx';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +22,11 @@ const router = createBrowserRouter([
         loader: categoriesLoader,
       },
       {
-        path: 'items/:categoryId',
+        path: 'categories/new',
+        element: <CategoriesForm />,
+      },
+      {
+        path: 'categories/:categoryId/items',
         element: <ItemsPage />,
         loader: itemsByCategoryLoader,
       },
@@ -28,6 +34,11 @@ const router = createBrowserRouter([
         path: 'item/:itemId',
         element: <ItemPage />,
         loader: itemByIdLoader,
+      },
+      {
+        path: 'items/new',
+        element: <Form />,
+        loader: categoriesLoader,
       },
     ],
   },
