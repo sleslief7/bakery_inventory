@@ -4,6 +4,7 @@ const {
   addCategory,
   queryCategoryById,
   deleteCategory,
+  updateCategoryById,
 } = require('../db/queries.js');
 
 const getAllCategories = asyncHandler(async (req, res) => {
@@ -46,9 +47,31 @@ const getCategoryById = asyncHandler(async (req, res) => {
   res.status(200).json(category);
 });
 
+const updateCategory = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+
+  if (!name) {
+    return res
+      .status(400)
+      .json({ status: 'fail', message: 'Category name is required' });
+  }
+
+  const category = await queryCategoryById(id);
+  if (!category) {
+    return res
+      .status(404)
+      .json({ status: 'fail', message: 'Category not found' });
+  }
+
+  const updatedCategory = await updateCategoryById(id, name);
+  res.status(200).json(updatedCategory);
+});
+
 module.exports = {
   getAllCategories,
   createCategory,
   deleteCategoryById,
   getCategoryById,
+  updateCategory,
 };

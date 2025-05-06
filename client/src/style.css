@@ -37,7 +37,7 @@
 .card-container {
   display: flex;
   justify-content: center;
-  align-desserts: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -73,7 +73,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-desserts: center;
+  align-items: center;
   font-size: 20px;
 }
 

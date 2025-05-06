@@ -6,6 +6,7 @@ const {
   queryDessertsByCategoryId,
   queryCategoryById,
   deleteDessert,
+  updateDessertById,
 } = require('../db/queries.js');
 
 const getAllDesserts = asyncHandler(async (req, res) => {
@@ -60,10 +61,35 @@ const deleteDessertById = asyncHandler(async (req, res) => {
   res.status(200).json(dessert);
 });
 
+const updateDessert = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const { name, flavor, category_id, img_url } = req.body;
+
+  if (!name || !flavor || !category_id || !img_url) {
+    return res
+      .status(400)
+      .json({ status: 'fail', message: 'All fields are required' });
+  }
+
+  const updatedDessert = await updateDessertById(id, {
+    name,
+    flavor,
+    category_id,
+    img_url,
+  });
+  if (!updatedDessert) {
+    return res
+      .status(404)
+      .json({ status: 'fail', message: 'Dessert not found' });
+  }
+  res.status(200).json(updatedDessert);
+});
+
 module.exports = {
   getAllDesserts,
   getDessertById,
   createDessert,
   getDessertsByCategoryId,
   deleteDessertById,
+  updateDessert,
 };

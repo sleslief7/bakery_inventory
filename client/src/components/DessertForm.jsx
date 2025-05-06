@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { createDessert, updateDessert } from '../actions';
 
@@ -7,6 +7,10 @@ const DessertForm = ({ item }) => {
   const navigate = useNavigate();
   const categories = useLoaderData();
 
+  useEffect(() => {
+    setDessert(item ?? {});
+  }, [item]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (dessert.id) {
@@ -14,7 +18,7 @@ const DessertForm = ({ item }) => {
     } else {
       await createDessert(dessert);
     }
-    navigate(`/desserts/${dessert.category_id}`);
+    navigate(`/categories/${dessert.category_id}/desserts`);
   };
 
   return (
@@ -49,7 +53,7 @@ const DessertForm = ({ item }) => {
       <select
         name="category_id"
         id="category_id"
-        selected={dessert?.category_id ?? ''}
+        value={dessert?.category_id ?? ''}
         onChange={(e) =>
           setDessert({ ...dessert, category_id: e.target.value })
         }

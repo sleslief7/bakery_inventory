@@ -5,12 +5,13 @@ import DessertsPage from './components/pages/DessertsPage';
 import DessertPage from './components/pages/DessertPage';
 import CreateDessertPage from './components/pages/CreateDessertPage';
 import EditDessertPage from './components/pages/EditDessertPage';
-import { categoriesLoader } from './loaders/categoriesLoader.jsx';
-import {
-  dessertsByCategoryLoader,
-  dessertByIdLoader,
-} from './loaders/dessertsLoader.jsx';
+
 import CategoriesForm from './components/CategoriesForm.jsx';
+import {
+  categoriesLoader,
+  dessertByIdLoader,
+  categoriesWithDessertsLoader,
+} from './actions.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
       {
         path: 'categories/:categoryId/desserts',
         element: <DessertsPage />,
-        loader: dessertsByCategoryLoader,
+        loader: categoriesWithDessertsLoader,
       },
       {
         path: 'desserts/:dessertId',

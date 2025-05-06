@@ -5,6 +5,7 @@ const {
   createDessert,
   getDessertsByCategoryId,
   deleteDessertById,
+  updateDessert,
 } = require('../controllers/dessertsController.js');
 
 const dessertsRouter = Router();
@@ -14,5 +15,6 @@ dessertsRouter.post('/', createDessert);
 dessertsRouter.get('/:id', getDessertById);
 dessertsRouter.get('/categories/:categoryId', getDessertsByCategoryId);
 dessertsRouter.delete('/:id', deleteDessertById);
+dessertsRouter.put('/:id', updateDessert);
 
 module.exports = dessertsRouter;

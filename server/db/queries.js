@@ -65,6 +65,22 @@ const deleteDessert = asyncHandler(async (id) => {
   return rows[0];
 });
 
+const updateDessertById = asyncHandler(async (id, dessert) => {
+  const { rows } = await pool.query(
+    'UPDATE desserts SET name = $1, flavor = $2, category_id = $3, img_url = $4 WHERE id = $5 RETURNING *',
+    [dessert.name, dessert.flavor, dessert.category_id, dessert.img_url, id]
+  );
+  return rows[0];
+});
+
+const updateCategoryById = asyncHandler(async (id, categoryName) => {
+  const { rows } = await pool.query(
+    'UPDATE categories SET name = $1 WHERE id = $2 RETURNING *',
+    [categoryName, id]
+  );
+  return rows[0];
+});
+
 module.exports = {
   queryAllDesserts,
   queryDessertById,
@@ -75,4 +91,6 @@ module.exports = {
   addCategory,
   deleteCategory,
   deleteDessert,
+  updateDessertById,
+  updateCategoryById,
 };
