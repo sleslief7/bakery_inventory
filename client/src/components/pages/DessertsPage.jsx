@@ -1,10 +1,11 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import DessertCard from '../DessertCard';
 import { useState } from 'react';
-import { updateCategory } from '../../actions';
+import { updateCategory, deleteCategory } from '../../actions';
 
 const EditableLabel = ({ category, setCategory }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();
 
   const handleEdit = async (e) => {
     e.preventDefault();
@@ -16,10 +17,19 @@ const EditableLabel = ({ category, setCategory }) => {
     setIsEditing(!isEditing);
   };
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    await deleteCategory(category.id);
+    navigate('/');
+  };
+
   return (
     <>
       {isEditing ? (
-        <input type="text" defaultValue={category.name} onBlur={handleEdit} />
+        <>
+          <input type="text" defaultValue={category.name} onBlur={handleEdit} />
+          <button onClick={handleDelete}>delete</button>
+        </>
       ) : (
         <h2>{category.name}</h2>
       )}

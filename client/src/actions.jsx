@@ -94,3 +94,23 @@ export const categoriesWithDessertsLoader = async ({ params }) => {
     throw error;
   }
 };
+
+export const deleteDessert = async (id) => {
+  try {
+    const response = await axios.delete(`${API_URL}/desserts/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting dessert:', error);
+    throw error;
+  }
+};
+
+export const deleteCategory = async (id) => {
+  try {
+    const response = await axios.delete(`${API_URL}/categories/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting category:', error);
+    throw error;
+  }
+};
