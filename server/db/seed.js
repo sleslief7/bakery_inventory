@@ -6,7 +6,7 @@ const SQL = `
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name VARCHAR(255) NOT NULL);
     
-    CREATE TABLE IF NOT EXISTS items (
+    CREATE TABLE IF NOT EXISTS desserts (
     id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
     name VARCHAR(255) NOT NULL,
@@ -15,7 +15,7 @@ const SQL = `
     
     INSERT INTO categories (name) VALUES('Cakes'), ('Cookies'), ('Cupcakes'), ('Pies');
     
-    INSERT INTO items (category_id, name, flavor, img_url) VALUES
+    INSERT INTO desserts (category_id, name, flavor, img_url) VALUES
     (1, 'Chocolate Cake', 'Chocolate', 'https://butternutbakeryblog.com/wp-content/uploads/2023/04/chocolate-cake.jpg'),
     (1, 'Vanilla Cake', 'Vanilla', 'https://thescranline.com/wp-content/uploads/2025/02/VANILLA-CAKE-25-S-01.jpg'),
     (2, 'Chocolate Chip Cookie', 'Chocolate Chip', 'https://static01.nyt.com/images/2022/02/12/dining/JT-Chocolate-Chip-Cookies/JT-Chocolate-Chip-Cookies-jumbo.jpg'),

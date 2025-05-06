@@ -6,9 +6,13 @@ const CategoriesPage = () => {
 
   return (
     <div id="categories-page">
-      {categories.map((category) => {
-        return <CategoryCard data={category} key={`category-${category.id}`} />;
-      })}
+      <div className="card-container">
+        {categories.map((category) => {
+          return (
+            <CategoryCard data={category} key={`category-${category.id}`} />
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -1,27 +1,29 @@
 const asyncHandler = require('express-async-handler');
 const pool = require('../db/pool.js');
 
-const queryAllItems = asyncHandler(async () => {
-  const { rows } = await pool.query('SELECT * FROM items');
+const queryAllDesserts = asyncHandler(async () => {
+  const { rows } = await pool.query('SELECT * FROM desserts');
   return rows;
 });
 
-const queryItemById = asyncHandler(async (id) => {
-  const { rows } = await pool.query('SELECT * FROM items WHERE id = $1', [id]);
+const queryDessertById = asyncHandler(async (id) => {
+  const { rows } = await pool.query('SELECT * FROM desserts WHERE id = $1', [
+    id,
+  ]);
   return rows[0];
 });
 
-const addItem = asyncHandler(async (item) => {
+const addDessert = asyncHandler(async (dessert) => {
   const { rows } = await pool.query(
-    'INSERT INTO items (name, flavor, category_id, img_url) VALUES ($1, $2, $3, $4) RETURNING *',
-    [item.name, item.flavor, item.category_id, item.img_url]
+    'INSERT INTO desserts (name, flavor, category_id, img_url) VALUES ($1, $2, $3, $4) RETURNING *',
+    [dessert.name, dessert.flavor, dessert.category_id, dessert.img_url]
   );
   return rows[0];
 });
 
-const queryItemsByCategoryId = asyncHandler(async (categoryId) => {
+const queryDessertsByCategoryId = asyncHandler(async (categoryId) => {
   const { rows } = await pool.query(
-    'SELECT * FROM items WHERE category_id = $1',
+    'SELECT * FROM desserts WHERE category_id = $1',
     [categoryId]
   );
   return rows;
@@ -55,22 +57,22 @@ const deleteCategory = asyncHandler(async (id) => {
   return rows[0];
 });
 
-const deleteItem = asyncHandler(async (id) => {
+const deleteDessert = asyncHandler(async (id) => {
   const { rows } = await pool.query(
-    'DELETE FROM items WHERE id = $1 RETURNING *',
+    'DELETE FROM desserts WHERE id = $1 RETURNING *',
     [id]
   );
   return rows[0];
 });
 
 module.exports = {
-  queryAllItems,
-  queryItemById,
-  addItem,
-  queryItemsByCategoryId,
+  queryAllDesserts,
+  queryDessertById,
+  addDessert,
+  queryDessertsByCategoryId,
   queryAllCategories,
   queryCategoryById,
   addCategory,
   deleteCategory,
-  deleteItem,
+  deleteDessert,
 };

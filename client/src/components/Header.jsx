@@ -3,10 +3,10 @@ import { useNavigate, useMatch } from 'react-router-dom';
 const Header = () => {
   const navigate = useNavigate();
   const isHomePage = useMatch('/');
-  const isCategoriesPage = useMatch('/categories/:id/items');
+  const isCategoriesPage = useMatch('/categories/:id/desserts');
 
   const handleAddCategory = () => {
-    const destination = isHomePage ? '/categories/new' : '/items/new';
+    const destination = isHomePage ? '/categories/new' : '/desserts/new';
     navigate(destination);
   };
 

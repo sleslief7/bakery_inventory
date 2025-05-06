@@ -2,7 +2,7 @@ require('dotenv').config();
 const { Client } = require('pg');
 
 const SQL = `
-  DROP TABLE IF EXISTS items, categories;
+  DROP TABLE IF EXISTS desserts, categories;
 `;
 
 async function seedDatabase() {

@@ -6,7 +6,7 @@ const CategoryCard = ({ data }) => {
     <>
       <div
         className="category-card card"
-        onClick={() => navigate(`/categories/${data.id}/items`)}
+        onClick={() => navigate(`/categories/${data.id}/desserts`)}
       >
         <h2>{data.name}</h2>
       </div>
